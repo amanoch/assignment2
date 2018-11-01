@@ -25,3 +25,5 @@ CREATE TABLE agent (agentid VARCHAR(2) NOT NULL, firstname VARCHAR(30), lastname
 CREATE TABLE customer (customerid VARCHAR(2), fname VARCHAR(30), lname VARCHAR(30), customercity VARCHAR(15), phonenumber INT, PRIMARY KEY(customerid), agecustid VARCHAR(2), FOREIGN KEY(agecustid) REFERENCES agent(agentid));
 CREATE TABLE purchase (pcustid VARCHAR(2) NOT NULL, pageid VARCHAR(2) NOT NULL, purchquant INT, PRIMARY KEY(pcustid,pageid), FOREIGN KEY(pcustid) REFERENCES customer(customerid), FOREIGN KEY(pageid) REFERENCES agent(agentid));
 SHOW TABLES;
+
+Hi Laura
