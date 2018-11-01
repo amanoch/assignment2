@@ -1,4 +1,5 @@
 Warning: Using a password on the command line interface can be insecure.
+ERROR 1215 (HY000) at line 26: Cannot add foreign key constraint
 --------------
 SHOW DATABASES
 --------------
@@ -57,15 +58,6 @@ CREATE TABLE customer (customerid VARCHAR(2), fname VARCHAR(30), lname VARCHAR(3
 --------------
 
 --------------
-CREATE TABLE purchase (pcustid VARCHAR(2) NOT NULL, pageid VARCHAR(2) NOT NULL, purchquant INT, PRIMARY KEY(pcustid,pageid), FOREIGN KEY(pcustid) REFERENCES customer(customerid), FOREIGN KEY(pageid) REFERENCES agent(agentid))
+CREATE TABLE purchase (pcustid VARCHAR(2) NOT NULL, pprodid VARCHAR(2) NOT NULL, purchquant INT, PRIMARY KEY(pcustid,pprodid), FOREIGN KEY(pcustid) REFERENCES customer(customerid), FOREIGN KEY(pprodid) REFERENCES product(pprodid))
 --------------
 
---------------
-SHOW TABLES
---------------
-
-Tables_in_amanoch3assign2db
-agent
-customer
-product
-purchase
