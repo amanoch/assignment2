@@ -1,0 +1,189 @@
+Warning: Using a password on the command line interface can be insecure.
+--------------
+SELECT productdescript FROM product
+--------------
+
+productdescript
+Ring
+Bike
+Socks
+Watch
+Purse
+Sweater
+Elbow pads
+Knee Pads
+Roller Blades
+Helmet
+--------------
+SELECT DISTINCT customercity FROM customer
+--------------
+
+customercity
+Bedrock
+Springfield
+Kypto
+Providence
+--------------
+SELECT * FROM agent ORDER BY agentcity
+--------------
+
+agentid	firstname	lastname	agentcity	commissionpercentage
+33	David	Letterman	Bedrock	100
+11	Regis	Phillbin	Boston	33
+18	Ashley	Manocha	London	95
+22	Courtney	Cox	New York	25
+12	Rosie	Cox	Ottawa	50
+66	Rosie	ODonnell	Ottawa	100
+99	Hugh	Grant	Springfield	16
+--------------
+SELECT fname,lname FROM customer WHERE customercity="Springfield"
+--------------
+
+fname	lname
+Monty	Burns
+Homer	Simpson
+Sideshow	Bob
+--------------
+SELECT lname FROM customer WHERE agecustid="11"
+--------------
+
+lname
+Rubble
+Flintstone
+--------------
+SELECT *  FROM product WHERE productdescript LIKE '%pad%'
+--------------
+
+productid	productdescript	costperitem	quantity
+66	Elbow pads	14	120
+78	Knee Pads	12	70
+--------------
+SELECT lname,pcustid,purchquant,productdescript FROM customer,purchase,product  WHERE pcustid=customerid AND pprodid=productid
+--------------
+
+lname	pcustid	purchquant	productdescript
+Griffens	14	19	Elbow pads
+Flintstone	15	2	Elbow pads
+Flintstone	15	2	Knee Pads
+Simpson	21	14	Socks
+Simpson	21	10	Elbow pads
+Simpson	21	20	Helmet
+Bob	31	2	Socks
+Bob	31	2	Elbow pads
+Bob	31	4	Knee Pads
+Bob	31	1	Helmet
+--------------
+SELECT fname,pcustid,SUM(purchquant) FROM customer,purchase WHERE pcustid=customerid AND fname LIKE '%Homer%'
+--------------
+
+fname	pcustid	SUM(purchquant)
+Homer	21	44
+--------------
+SELECT pcustid,pprodid,purchquant,fname,lname,customerid FROM purchase,customer WHERE customerid=pcustid
+--------------
+
+pcustid	pprodid	purchquant	fname	lname	customerid
+14	66	19	Peter	Griffens	14
+15	66	2	Fred	Flintstone	15
+15	78	2	Fred	Flintstone	15
+21	12	14	Homer	Simpson	21
+21	66	10	Homer	Simpson	21
+21	99	20	Homer	Simpson	21
+31	12	2	Sideshow	Bob	31
+31	66	2	Sideshow	Bob	31
+31	78	4	Sideshow	Bob	31
+31	99	1	Sideshow	Bob	31
+--------------
+SELECT DISTINCT  productdescript,quantity FROM customer,product WHERE fname<>"Fred"
+--------------
+
+productdescript	quantity
+Ring	26
+Bike	200
+Socks	100
+Watch	160
+Purse	234
+Sweater	43
+Elbow pads	120
+Knee Pads	70
+Roller Blades	89
+Helmet	30
+--------------
+SELECT DISTINCT productdescript,quantity FROM product,purchase WHERE productid!= pprodid
+--------------
+
+productdescript	quantity
+Ring	26
+Bike	200
+Watch	160
+Purse	234
+Sweater	43
+Elbow pads	120
+Knee Pads	70
+Roller Blades	89
+Helmet	30
+Socks	100
+--------------
+SELECT fname,lname,firstname,lastname FROM customer,agent WHERE agentcity=customercity
+--------------
+
+fname	lname	firstname	lastname
+Barney	Rubble	David	Letterman
+Fred	Flintstone	David	Letterman
+Monty	Burns	Hugh	Grant
+Homer	Simpson	Hugh	Grant
+Sideshow	Bob	Hugh	Grant
+--------------
+SELECT productdescript,pprodid,SUM(Purchquant) FROM product,purchase WHERE productdescript="Knee Pads"
+--------------
+
+productdescript	pprodid	SUM(Purchquant)
+Knee Pads	66	76
+--------------
+SELECT pprodid,pcustid,productdescript FROM purchase,product WHERE productid=pprodid
+--------------
+
+pprodid	pcustid	productdescript
+12	21	Socks
+12	31	Socks
+66	14	Elbow pads
+66	15	Elbow pads
+66	21	Elbow pads
+66	31	Elbow pads
+78	15	Knee Pads
+78	31	Knee Pads
+99	21	Helmet
+99	31	Helmet
+--------------
+SELECT DISTINCT customerid,agentid,firstname,lastname,productid,productdescript, pprodid FROM customer,agent,product,purchase WHERE agentid=agecustid AND productid=pprodid
+--------------
+
+customerid	agentid	firstname	lastname	productid	productdescript	pprodid
+10	11	Regis	Phillbin	12	Socks	12
+15	11	Regis	Phillbin	12	Socks	12
+13	33	David	Letterman	12	Socks	12
+31	66	Rosie	ODonnell	12	Socks	12
+12	99	Hugh	Grant	12	Socks	12
+14	99	Hugh	Grant	12	Socks	12
+21	99	Hugh	Grant	12	Socks	12
+10	11	Regis	Phillbin	66	Elbow pads	66
+15	11	Regis	Phillbin	66	Elbow pads	66
+13	33	David	Letterman	66	Elbow pads	66
+31	66	Rosie	ODonnell	66	Elbow pads	66
+12	99	Hugh	Grant	66	Elbow pads	66
+14	99	Hugh	Grant	66	Elbow pads	66
+21	99	Hugh	Grant	66	Elbow pads	66
+10	11	Regis	Phillbin	78	Knee Pads	78
+15	11	Regis	Phillbin	78	Knee Pads	78
+13	33	David	Letterman	78	Knee Pads	78
+31	66	Rosie	ODonnell	78	Knee Pads	78
+12	99	Hugh	Grant	78	Knee Pads	78
+14	99	Hugh	Grant	78	Knee Pads	78
+21	99	Hugh	Grant	78	Knee Pads	78
+10	11	Regis	Phillbin	99	Helmet	99
+15	11	Regis	Phillbin	99	Helmet	99
+13	33	David	Letterman	99	Helmet	99
+31	66	Rosie	ODonnell	99	Helmet	99
+12	99	Hugh	Grant	99	Helmet	99
+14	99	Hugh	Grant	99	Helmet	99
+21	99	Hugh	Grant	99	Helmet	99

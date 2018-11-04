@@ -1,0 +1,68 @@
+-- -- Ashley's Script 3 (Assignment 2) 
+-- Stud num: 250911614
+
+-- File 3 Queries
+
+USE amanoch3assign2db;
+
+-- Query 1
+
+SELECT productdescript FROM product;
+
+-- Query 2
+SELECT DISTINCT customercity FROM customer;
+
+-- Query 3
+
+SELECT * FROM agent ORDER BY agentcity;
+
+-- Query 4
+SELECT fname,lname FROM customer WHERE customercity="Springfield";
+
+-- Query 5
+
+SELECT lname FROM customer WHERE agecustid="11";
+
+-- Query 6
+
+SELECT *  FROM product WHERE productdescript LIKE '%pad%';
+
+-- Query 7 
+
+SELECT lname,pcustid,purchquant,productdescript FROM customer,purchase,product  WHERE pcustid=customerid AND pprodid=productid;
+
+
+-- Query 8
+
+SELECT fname,pcustid,SUM(purchquant) FROM customer,purchase WHERE pcustid=customerid AND fname LIKE '%Homer%';
+
+
+-- Query 9
+
+SELECT pcustid,pprodid,purchquant,fname,lname,customerid FROM purchase,customer WHERE customerid=pcustid;
+ 
+-- Query 10
+
+SELECT DISTINCT  productdescript,quantity FROM customer,product WHERE fname<>"Fred";
+
+-- Query 11
+
+SELECT DISTINCT productdescript,quantity FROM product,purchase WHERE productid!= pprodid;
+
+-- Query 12
+
+SELECT fname,lname,firstname,lastname FROM customer,agent WHERE agentcity=customercity;
+
+-- Query 13
+
+SELECT productdescript,pprodid,SUM(Purchquant) FROM product,purchase WHERE productdescript="Knee Pads";
+
+-- Query 14
+
+SELECT pprodid,pcustid,productdescript FROM purchase,product WHERE productid=pprodid;
+
+-- Query 15 
+
+ SELECT DISTINCT customerid,agentid,firstname,lastname,productid,productdescript, pprodid FROM customer,agent,product,purchase WHERE agentid=agecustid AND productid=pprodid;
+
+
