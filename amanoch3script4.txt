@@ -1,0 +1,37 @@
+-- -- Ashley's Script 4 (Assignment 2) 
+-- Stud num: 250911614
+
+-- File 4 Deletions/Views
+
+-- Show all Data from each table 
+
+SELECT * FROM product;
+SELECT * FROM agent;
+SELECT * FROM customer;
+SELECT * FROM purchase;
+
+--View of Customer info and what they bought and for how much
+
+CREATE VIEW temp2  AS SELECT DISTINCT  fname,lname,productdescript,costperitem,purchquant FROM customer,product,purchase WHERE customer.customerid =purchase.pcustid;
+
+-- Proof
+
+SELECT * FROM temp2;
+
+-- select only the rows from the view (all columns from the view) where customers spent more than 100 dollars
+SELECT purchquant >100 FROM temp2;
+
+
+-- Delete Product I made (Iphone)
+
+DELETE FROM product  WHERE  productdescript LIKE "%Iphone%";
+
+-- Prove That It worked
+
+SELECT * FROM product;
+
+-- Deleting all agents who are from Springfield
+
+--  Cannot delete or update a parent row: a foreign key constraint fails (`amanoch3assign2db`.`customer`, CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`agecustid`) REFERENCES `agent` (`agentid`));
+-- The row for agents who live in Springfield was not deleted because the agent id is referenced as a forgien key for the customer table, i would first have to change the agent Id for the customer and then delete the agent.
+-- Also you cannot delete an agent that is assigned to a customer, because all customers who are buying 
