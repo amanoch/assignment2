@@ -94,21 +94,6 @@ pcustid	pprodid	purchquant	fname	lname	customerid
 31	78	4	Sideshow	Bob	31
 31	99	1	Sideshow	Bob	31
 --------------
-SELECT DISTINCT  productdescript,quantity FROM customer,product WHERE fname<>"Fred"
---------------
-
-productdescript	quantity
-Ring	26
-Bike	200
-Socks	100
-Watch	160
-Purse	234
-Sweater	43
-Elbow pads	120
-Knee Pads	70
-Roller Blades	89
-Helmet	30
---------------
 SELECT DISTINCT productdescript,quantity FROM product,purchase WHERE productid!= pprodid
 --------------
 
@@ -123,6 +108,12 @@ Knee Pads	70
 Roller Blades	89
 Helmet	30
 Socks	100
+--------------
+SELECT DISTINCT productdescript,quantity FROM product,purchase WHERE productid=pprodid NOT IN(SELECT customerid FROM customer WHERE  fname="Fred" AND lname="Flintstone")
+--------------
+
+productdescript	quantity
+Ring	26
 --------------
 SELECT fname,lname,firstname,lastname FROM customer,agent WHERE agentcity=customercity
 --------------

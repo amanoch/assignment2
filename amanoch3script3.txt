@@ -43,21 +43,22 @@ SELECT pcustid,pprodid,purchquant,fname,lname,customerid FROM purchase,customer 
  
 -- Query 10
 
-SELECT DISTINCT  productdescript,quantity FROM customer,product WHERE fname<>"Fred";
+SELECT DISTINCT productdescript,quantity FROM product,purchase WHERE productid!= pprodid;
 
 -- Query 11
 
-SELECT DISTINCT productdescript,quantity FROM product,purchase WHERE productid!= pprodid;
+SELECT DISTINCT productdescript,quantity FROM product,purchase WHERE productid=pprodid NOT IN(SELECT customerid FROM customer WHERE  fname="Fred" AND lname="Flintstone");
 
 -- Query 12
 
 SELECT fname,lname,firstname,lastname FROM customer,agent WHERE agentcity=customercity;
 
--- Query 13
+-- Query 13 (It wont let me add the title, it makes it an error)
 
 SELECT productdescript,pprodid,SUM(Purchquant) FROM product,purchase WHERE productdescript="Knee Pads";
 
 -- Query 14
+
 
 SELECT pprodid,pcustid,productdescript FROM purchase,product WHERE productid=pprodid;
 
