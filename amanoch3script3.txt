@@ -35,7 +35,7 @@ SELECT lname,pcustid,purchquant,productdescript FROM customer,purchase,product  
 -- Query 8
 
 SELECT fname,pcustid,SUM(purchquant) FROM customer,purchase WHERE pcustid=customerid AND fname LIKE '%Homer%';
-
+-- My title "Homer's Total Purchases" wont show up, error message, I tried to add it.
 
 -- Query 9
 
@@ -56,6 +56,7 @@ SELECT fname,lname,firstname,lastname FROM customer,agent WHERE agentcity=custom
 -- Query 13 (It wont let me add the title, it makes it an error)
 
 SELECT productdescript,pprodid,SUM(Purchquant) FROM product,purchase WHERE productdescript="Knee Pads";
+--  It should be AS 'Knee Pad Summary', But i keep getting an error
 
 -- Query 14
 
